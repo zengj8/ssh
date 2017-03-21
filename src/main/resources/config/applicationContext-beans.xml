@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+
+	<!-- Spring管理Struts2的Action -->
+	<bean name="workAction" class="com.shy.action.WorkAction" scope="prototype"></bean>
+	<bean name="loginAction" class="com.shy.action.LoginAction" scope="prototype"></bean>
+	<bean name="registerAction" class="com.shy.action.RegisterAction" scope="prototype"></bean>
+	<bean name="userMainAction" class="com.opensymphony.xwork2.ActionSupport" scope="prototype"></bean>
+	<bean name="userAction" class="com.shy.action.UserAction" scope="prototype">
+		<!-- <property name="userManage" ref="userManage"></property> -->
+	</bean>
+
+	<!-- Spring管理Struts2的Interceptor -->
+	<!--  
+	<bean name="checkLoginInterceptor" class="com.shy.interceptor.CheckLogin" scope="prototype"></bean>
+	-->
+	
+	
+	<bean name="userManage" class="com.shy.service.UserManageImp">
+		<!-- <property name="userDao" ref="userDao"></property> -->
+	</bean>
+	
+	<bean name="userService" class="com.shy.service.UserServiceImpl">
+		<!-- <property name="userDao" ref="userDao"></property> -->
+	</bean>
+	
+	<bean name="userDao" class="com.shy.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean name="workService" class="com.shy.service.WorkServiceImpl">
+		<!-- <property name="userDao" ref="userDao"></property> -->
+	</bean>
+	
+	<bean name="workDao" class="com.shy.dao.WorkDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+</beans>
